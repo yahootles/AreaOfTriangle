@@ -17,24 +17,47 @@ public class AreaOfTriangle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double a, b, c, C;
-        boolean flag = false;
-
+        //variable declaration
+        double a, b, c, C;//side lengths and angle
+        double area = 0;//area
+        boolean flag = false;//flag for while loop
+        
         while (!flag) {
             try {
+                //get option from user
                 int option = Integer.parseInt(JOptionPane.showInputDialog("Enter 1 to use Heron's formula or 2 to use trigonometry"));
                 switch (option) {
                     case 1:
-
+                        //get required side lengths
+                        a = getSideLength();
+                        b = getSideLength();
+                        c = getSideLength();
+                        //calculate area
+                        area = heronsFormula(a,b,c);
+                        
+                        flag = true;
                         break;
                     case 2:
-
+                        //get required side lengths and angle
+                        a = getSideLength();
+                        b =  getSideLength();
+                        C = getAngle();
+                        //calculate area
+                        area = trigArea(a,b,C);
+                        
+                        flag = true;
                         break;
+                    default:
+                        //make sure input is valid
+                        throw new NumberFormatException(); 
                 }
+                
             } catch (NumberFormatException nfe) {
                 System.err.println("Not an option");
             }
         }
+        //output area
+        System.out.println("The area of the trianlge is: " + area);
     }
 
     /**
@@ -75,7 +98,7 @@ public class AreaOfTriangle {
      *
      * @return - side length that user entered
      */
-    public static double sideLengthInput() {
+    public static double getSideLength() {
         double sLength = 0;
         boolean flag = false;
 
@@ -100,7 +123,7 @@ public class AreaOfTriangle {
      *
      * @return - angle that user entered
      */
-    public static double angleInput() {
+    public static double getAngle() {
         double angle = 0;
         boolean flag = false;
         
