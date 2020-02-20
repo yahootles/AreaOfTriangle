@@ -18,8 +18,23 @@ public class AreaOfTriangle {
      */
     public static void main(String[] args) {
         double a, b, c, C;
+        boolean flag = false;
 
-        int option = Integer.parseInt(JOptionPane.showInputDialog("Enter 1 to use Heron's formula or 2 to use trigonometry"));
+        while (!flag) {
+            try {
+                int option = Integer.parseInt(JOptionPane.showInputDialog("Enter 1 to use Heron's formula or 2 to use trigonometry"));
+                switch (option) {
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                }
+            } catch (NumberFormatException nfe) {
+                System.err.println("Not an option");
+            }
+        }
     }
 
     /**
@@ -39,9 +54,9 @@ public class AreaOfTriangle {
 
         return area;
     }
-    
+
     /**
-     * 
+     *
      * @param a - side length a
      * @param b - side length b
      * @param C - angle C (in between a and b)
@@ -54,6 +69,52 @@ public class AreaOfTriangle {
         area = ((a * b) / 2) * Math.sin(angleInRadians);
 
         return area;
+    }
+
+    /**
+     *
+     * @return - side length that user entered
+     */
+    public static double sideLengthInput() {
+        double sLength = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                //prompt for input
+                sLength = Double.parseDouble(JOptionPane.showInputDialog("Enter a side length (must be positive)"));
+                //make sure side length is positive
+                if (sLength <= 0) {
+                    throw new NumberFormatException();
+                } else {
+                    return sLength;
+                }
+            } catch (NumberFormatException nfe) {
+                System.err.println("Invalid input");
+            }
+        }
+        return sLength;
+    }
+
+    /**
+     *
+     * @return - angle that user entered
+     */
+    public static double angleInput() {
+        double angle = 0;
+        boolean flag = false;
+        
+        while (!flag) {
+            try {
+                //prompt user for input
+                angle = Double.parseDouble(JOptionPane.showInputDialog("Enter an angle in degrees"));
+                flag = true;
+            } catch (NumberFormatException nfe) {
+                //ensure input is valid
+                System.err.println("Invalid input");
+            }
+        }
+        return angle;
     }
 
 }
